@@ -42,7 +42,7 @@ void exponentialSearch(int arr[], int n, int val)
         return;
     }
     int i = 1;
-    while (i < n && arr[i] < val)
+    while (i<n && arr[i]<val)
     {
         cmp++;
         i *= 2;
