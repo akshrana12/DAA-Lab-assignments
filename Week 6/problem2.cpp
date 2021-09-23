@@ -2,16 +2,23 @@
 
 using namespace std;
 int arr[101][101];
-bool dfs(int s,int d,vector<bool> & vis,int n)
+bool dfs(int s,vector<int> & vis,int n,int c)
 {
-    vis[s]=1;
-    if(s==d)
-        return true;
+    vis[s]=c;
+    int send=2;
+    if(c==2)
+        send=1;
     for(int i=1;i<=n;i++)
     {
-        if(vis[i]==false&&arr[s][i]==1)
+        if(s==i||vis[i]==send)
+            continue;
+        if(arr[s][i]==1&&vis[i]==c)
         {
-            if(dfs(i,d,vis,n))
+            return true;
+        }
+        else if(arr[s][i]==1)
+        {
+            if(dfs(i,vis,n,send))
                 return true;
         }
     }
@@ -32,16 +39,14 @@ int main()
                 cin>>arr[i][j];
             }
         }
-        vector<bool> vis(n+1,false);
-        int s,d;
-        cin>>s>>d;
-        if(dfs(s,d,vis,n))
+        vector<int> vis(n+1,0);
+        if(dfs(1,vis,n,1))
         {
-            cout<<"Yes there is a path\n";
+            cout<<"Graph is not bipatite\n";
         }
         else
         {
-            cout<<"No\n";
+            cout<<"Graph is bipatite\n";
         }
     }
     return 0;
