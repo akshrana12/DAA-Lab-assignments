@@ -8,19 +8,17 @@ int partition(int arr[],int s,int e)
     int i=s-1,j=s;
     for (;j<e;j++)
     {
-        ++comp;
+        comp++;
         if(arr[j]<=p)
         {
-            ++swaps;
-            int t = arr[++i];
-            arr[i] = arr[j];
-            arr[j] = t;
+            swaps++;
+            i++;
+            swap(arr[i],arr[j]);
         }
     }
     swaps++;
-    int t = arr[++i];
-    arr[i] = arr[j];
-    arr[j] = t;
+    i++;
+    swap(arr[i],arr[j]);
     return i;
 }
 void QuickSort(int arr[],int s,int e)
