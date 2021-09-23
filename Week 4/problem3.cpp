@@ -21,13 +21,15 @@ int partition(int arr[],int s,int e)
     swap(arr[i],arr[j]);
     return i;
 }
-void QuickSort(int arr[],int s,int e)
+int kthsmallest(int arr[],int s,int e,int k)
 {
-    if(s>=e)
-        return;
     int p=partition(arr,s,e);
-    QuickSort(arr,s,p-1);
-    QuickSort(arr,p+1,e);
+    if(p==k-1)
+        return arr[p];
+    else if(p<k-1)
+        return kthsmallest(arr,p+1,e,k);
+    else
+        return kthsmallest(arr,s,p-1,k);
 }
 int main()
 {
@@ -42,14 +44,9 @@ int main()
         {
             cin>>arr[i];
         }
-        QuickSort(arr,0,n-1);
-        for(int i=0;i<n;i++)
-        {
-            cout<<arr[i]<<" ";
-        }
-        cout<<"\n";
-        cout<<"Comparisions :"<<comp<<"\n";
-        cout<<"Swaps :"<<swaps<<"\n";
+        int k;
+        cin>>k;
+        cout<<kthsmallest(arr,0,n-1,k);
     }
     return 0;
 }
