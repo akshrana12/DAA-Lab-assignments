@@ -20,20 +20,18 @@ int main()
         while(low<=high)
         {
             int mid=(low+high)/2;
+            cmp+=1;
             if(arr[mid]==f)
             {
-                cmp+=1;
                 flag=1;
                 break;
             }
             else if(arr[mid]<f)
             {
-                cmp+=2;
                 low=mid+1;
             }
             else
             {
-                cmp+=3;
                 high=mid-1;
             }
         }
