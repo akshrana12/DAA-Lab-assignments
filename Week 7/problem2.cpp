@@ -26,37 +26,27 @@ int main()
         dis[s]=0;
         for(int i=1;i<n;i++)
         {
-            int min1=INT_MAX,ind=1;
             for(int j=1;j<=n;j++)
             {
-                if(min1>dis[j]&&vis[j]==0)
+                for(int k=1;k<=n;k++)
                 {
-                    min1=dis[j];
-                    ind=j;
+                    if(arr[j][k]!=0&&dis[j]!=INT_MAX&&dis[k]>dis[j]+arr[j][k])
+                    {
+                        dis[k]=dis[j]+arr[j][k];
+                        path[k]=j;
+                    }
                 }
             }
-            vis[ind]=1;
-            for(int j=1;j<=n;j++)
-            {
-                if(vis[j]==0&&arr[s][j]>0&&dis[j]>dis[s]+arr[s][j])
-                {
-                    dis[j]=dis[s]+arr[s][j];
-                    path[j]=s;
-                }
-            }
-            s=ind;
         }
         for(int i=1;i<=n;i++)
         {
-            cout<<i-1<<"="<<dis[i]<<"\n";
-            cout<<"path<==\n";
             int x=i;
             while(path[x]!=x)
             {
-                cout<<x-1<<" ";
+                cout<<x<<" ";
                 x=path[x];
             }
-            cout<<0<<"\n";
+            cout<<1<<":"<<dis[i]<<"\n";
         }
     }
     return 0;
