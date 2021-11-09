@@ -59,10 +59,7 @@ int main()
                     }
                 }
             }
-            cout<<x<<" "<<y<<"\n";
             union1(x,y);
-            cout<<find1(x)<<" "<<find1(y)<<"\n";
-            cout<<min<<"\n";
             sum+=min;
         }
         cout<<sum<<"\n";
